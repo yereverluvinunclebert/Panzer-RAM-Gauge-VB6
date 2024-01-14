@@ -6,7 +6,7 @@
 
  Why VB6? Well, with a 64 bit, modern-language improvement upgrade on the way with 100% compatible TwinBasic coupled with support for transparent PNGs via RC/Cairo, VB6 code has an amazing future.
 
-![vb6-logo-350](https://github.com/yereverluvinunclebert/Panzer-RAM-Gauge-VB6/assets/2788342/39e2c93f-40a5-4c47-8c23-d8ce7c747b10)
+![vb6-logo-350](https://github.com/yereverluvinunclebert/Panzer-RAM-Gauge-VB6/assets/2788342/2f60380d-29f5-4737-8392-e7d747c61f25)
 
  I created as a variation of the previous gauges I had previously created for the World of Tanks and War Thunder 
  communities. The Panzer RAM Gauge widget is an attractive dieselpunk VB6 widget for your desktop. 
@@ -14,14 +14,13 @@
   
 The Panzer RAM Gauge VB6  is a useful utility displaying the RAM usage of your system in a dieselpunk fashion on your desktop. This Widget is a moveable widget that you can move anywhere around the desktop as you require.
  
-![panzer-RAMphoto-1440x900](https://github.com/yereverluvinunclebert/Panzer-RAM-Gauge-VB6/assets/2788342/b9b4ef35-d007-48f7-9440-135a3f3ca092)
+![panzer-ramphoto-1440x900](https://github.com/yereverluvinunclebert/Panzer-RAM-Gauge-VB6/assets/2788342/325c427a-2149-4f92-aeb9-51b9f937cd4c)
 
  This widget can be increased in size, animation speed can be changed, 
  opacity/transparency may be set as to the users discretion. The widget can 
  also be made to hide for a pre-determined period.
  
-![widgetOnWhite](https://github.com/yereverluvinunclebert/Panzer-RAM-Gauge-VB6/assets/2788342/79a2877e-6b3f-485d-9ae9-0196154ae7b7)
-
+![panzer-ram-icon](https://github.com/yereverluvinunclebert/Panzer-RAM-Gauge-VB6/assets/2788342/99ff7e97-d6e4-4696-93cc-e1342560465e)
 
  Right clicking will bring up a menu of options. Double-clicking on the widget will cause a personalised Windows application to 
  fire up. The first time you run it there will be no assigned function and so it 
@@ -30,16 +29,16 @@ The Panzer RAM Gauge VB6  is a useful utility displaying the RAM usage of your s
  windows. Mouse hover over the widget and press CTRL+mousewheel up/down to resize. It works well on Windows XP 
  to Windows 11.
  
-![panzergauge-help](https://github.com/yereverluvinunclebert/Panzer-RAM-Gauge-VB6/assets/2788342/d5aeb2f6-307e-42de-ac9f-6238e0aa18ba)
+ ![panzer-ramgauge-help-750](https://github.com/yereverluvinunclebert/Panzer-RAM-Gauge-VB6/assets/2788342/4ac57fec-58ed-493d-ba1a-eaab078ef828)
 
- 
  The Panzer RAM Gauge VB6 gauge is Beta-grade software, under development, not yet 
  ready to use on a production system - use at your own risk.
 
  This version was developed on Windows 7 using 32 bit VisualBasic 6 as a FOSS 
  project creating a WoW64 widget for the desktop. 
  
-![Licence002](https://github.com/yereverluvinunclebert/Panzer-RAM-Gauge-VB6/assets/2788342/a24c5c45-5517-4423-938b-398f1d349d4c)
+![Licence002](https://github.com/yereverluvinunclebert/Panzer-RAM-Gauge-VB6/assets/2788342/09dd88fd-0bff-4115-8fda-9b3e6b6852f5)
+
 
  It is open source to allow easy configuration, bug-fixing, enhancement and 
  community contribution towards free-and-useful VB6 utilities that can be created
@@ -47,8 +46,8 @@ The Panzer RAM Gauge VB6  is a useful utility displaying the RAM usage of your s
  basis for the conversion of other desktop utilities or widgets. A future step 
  is new VB6 widgets with more functionality and then hopefully, conversion of 
  each to RADBasic/TwinBasic for future-proofing and 64bit-ness. 
-
-![menu01](https://github.com/yereverluvinunclebert/Panzer-RAM-Gauge-VB6/assets/2788342/45da67ae-8ec9-4730-a00d-e3c5a1db7519)
+ 
+![menu01](https://github.com/yereverluvinunclebert/Panzer-RAM-Gauge-VB6/assets/2788342/ee727437-e6e4-4b91-8c0d-90e7e43352b4)
 
  This utility is one of a set of steampunk and dieselpunk widgets. That you can 
  find here on Deviantart: https://www.deviantart.com/yereverluvinuncleber/gallery
@@ -57,7 +56,7 @@ The Panzer RAM Gauge VB6  is a useful utility displaying the RAM usage of your s
  enhancements and contributions will be gratefully received if you choose to 
  contribute.
 
- ![security](https://github.com/yereverluvinunclebert/Panzer-RAM-Gauge-VB6/assets/2788342/41c785ea-43f9-4850-94f6-3cc5ab69d890)
+![security](https://github.com/yereverluvinunclebert/Panzer-RAM-Gauge-VB6/assets/2788342/2fdc4671-94e3-41ef-8885-997ae81978ce)
 
  BUILD: The program runs without any Microsoft plugins.
  
@@ -127,8 +126,7 @@ The Panzer RAM Gauge VB6  is a useful utility displaying the RAM usage of your s
  without any additional Microsoft OCX components, just the basic controls that 
  ship with VB6.  
  
- ![vb6-logo-200](https://github.com/yereverluvinunclebert/Panzer-RAM-Gauge-VB6/assets/2788342/bf00fa3d-f1d4-417b-bc50-9446f2c3e674)
-
+![vb6-logo-350](https://github.com/yereverluvinunclebert/Panzer-RAM-Gauge-VB6/assets/2788342/2479af5a-82bf-42ae-bdb1-28c22160f93c)
  
  * Uses the latest version of the RC6 Cairo framework from Olaf Schmidt.
  
@@ -174,7 +172,7 @@ The Panzer RAM Gauge VB6  is a useful utility displaying the RAM usage of your s
  
  In the VB6 IDE - project - references - browse - select the OLEGuids.tlb
  
-![prefs-about](https://github.com/yereverluvinunclebert/Panzer-RAM-Gauge-VB6/assets/2788342/2349098d-f7df-4084-885e-383a58b87bac)
+![prefs-about](https://github.com/yereverluvinunclebert/Panzer-RAM-Gauge-VB6/assets/2788342/b2063169-44ad-4fd1-960f-53bed0c030e6)
 
 
  * SETUP.EXE - The program is currently distributed using setup2go, a very useful 
@@ -209,9 +207,9 @@ The Panzer RAM Gauge VB6  is a useful utility displaying the RAM usage of your s
  With regard to the commercial use of incorporated images, permission and a 
  licence would need to be obtained from the original owner and creator, ie. me.
  
-![about](https://github.com/yereverluvinunclebert/Panzer-RAM-Gauge-VB6/assets/2788342/31fdceed-a7fe-4b50-afe1-9a0bb7cf60f8)
+![about](https://github.com/yereverluvinunclebert/Panzer-RAM-Gauge-VB6/assets/2788342/00641064-f0ae-435c-ac64-24e6a30290bc)
 
-![Panzer-RAM-Gauge-onDesktop](https://github.com/yereverluvinunclebert/Panzer-RAM-Gauge-VB6/assets/2788342/f2e06e77-77ee-46fb-840d-e14f96b4e0a5)
+![Panzer-CPU-Gauge-onDesktop](https://github.com/yereverluvinunclebert/Panzer-RAM-Gauge-VB6/assets/2788342/6dc97b14-9954-4f8c-a775-5657b2aeec85)
 
 
 

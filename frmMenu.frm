@@ -75,7 +75,7 @@ Begin VB.Form menuForm
          Caption         =   "Edit Widget using..."
       End
       Begin VB.Menu mnuSwitchOff 
-         Caption         =   "Switch off my functions (Ticking hands)"
+         Caption         =   "Switch off my functions (Pointer && Digital Display)"
       End
       Begin VB.Menu mnuTurnFunctionsOn 
          Caption         =   "Turn all functions ON"
@@ -456,7 +456,7 @@ Public Sub mnuLatest_Click()
     answer = msgBoxA(answerMsg, vbExclamation + vbYesNo, "Request to Upgrade", True, "mnuLatestClick")
 
     If answer = vbYes Then
-        Call ShellExecute(Me.hwnd, "Open", "https://github.com/yereverluvinunclebert/Panzer-JustClock-VB6", vbNullString, App.path, 1)
+        Call ShellExecute(Me.hwnd, "Open", "https://github.com/yereverluvinunclebert/Panzer-RAM-Gauge-VB6", vbNullString, App.path, 1)
     End If
 
 

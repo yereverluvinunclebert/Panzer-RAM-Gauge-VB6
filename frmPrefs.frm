@@ -31,7 +31,7 @@ Begin VB.Form panzerPrefs
          Top             =   300
          Width           =   6750
          Begin VB.CheckBox chkGaugeFunctions 
-            Caption         =   "Hand operation toggle *"
+            Caption         =   "Pointer operation toggle *"
             Height          =   225
             Left            =   1995
             TabIndex        =   52
@@ -50,7 +50,7 @@ Begin VB.Form panzerPrefs
             Width           =   3720
          End
          Begin VB.CheckBox chkGenStartup 
-            Caption         =   "Run the Just Clock Widget at Windows Startup "
+            Caption         =   "Run the RAM Widget at Windows Startup "
             Height          =   465
             Left            =   1995
             TabIndex        =   93
@@ -4129,7 +4129,7 @@ Private Sub lblGitHub_dblClick()
     answerMsg = "This option opens a browser window and take you straight to Github. Proceed?"
     answer = msgBoxA(answerMsg, vbExclamation + vbYesNo, "Proceed to Github? ", True, "lblGitHubDblClick")
     If answer = vbYes Then
-       Call ShellExecute(Me.hwnd, "Open", "https://github.com/yereverluvinunclebert/Panzer-JustClock-VB6", vbNullString, App.path, 1)
+       Call ShellExecute(Me.hwnd, "Open", "https://github.com/yereverluvinunclebert/Panzer-RAM-Gauge-VB6", vbNullString, App.path, 1)
     End If
 
    On Error GoTo 0

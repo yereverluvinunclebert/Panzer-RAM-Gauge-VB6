@@ -3199,7 +3199,7 @@ Private Sub btnSave_Click()
 '    PzGMainGaugeTimeZone = cmbMainGaugeTimeZone.ListIndex
 '    PzGMainDaylightSaving = cmbMainDaylightSaving.ListIndex
     
-    PzGSmoothSecondHand = cmbTickSwitchPref.ListIndex
+    PzGPointerAnimate = cmbTickSwitchPref.ListIndex
     PzGSamplingInterval = LTrim$(Str$(sliSamplingInterval.Value))
     
     'PzGSecondaryGaugeTimeZone = cmbSecondaryGaugeTimeZone.List(cmbSecondaryGaugeTimeZone.ListIndex)
@@ -3275,7 +3275,7 @@ Private Sub btnSave_Click()
         sPutINISetting "Software\PzRAMGauge", "scrollWheelDirection", PzGScrollWheelDirection, PzGSettingsFile
                 
         sPutINISetting "Software\PzRAMGauge", "gaugeFunctions", PzGGaugeFunctions, PzGSettingsFile
-        sPutINISetting "Software\PzRAMGauge", "smoothSecondHand", PzGSmoothSecondHand, PzGSettingsFile
+        sPutINISetting "Software\PzRAMGauge", "pointerAnimate", PzGPointerAnimate, PzGSettingsFile
         sPutINISetting "Software\PzRAMGauge", "samplingInterval", PzGSamplingInterval, PzGSettingsFile
         
         
@@ -3523,7 +3523,7 @@ Private Sub adjustPrefsControls()
         
     'txtBias.Text = tzDelta
 
-    cmbTickSwitchPref.ListIndex = Val(PzGSmoothSecondHand)
+    cmbTickSwitchPref.ListIndex = Val(PzGPointerAnimate)
     
     sliSamplingInterval = Val(PzGSamplingInterval)
     

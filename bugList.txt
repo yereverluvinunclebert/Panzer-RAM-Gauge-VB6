@@ -23,14 +23,16 @@ DONE
 ' initial github synch.
 ' readme.md created and updated with new images
 
-' -oOo-
-
-TODO
-
 ' smooth pointer - flick/smooth
 ' sampling interval vars - done
 ' sampling interval var validation - done
 ' sampling interval var reading/writing - done
+
+' -oOo-
+
+TODO
+
+' improve data collection to reduce unnecessary CPU usage on each sampling interval
 
 ' add second monitor - wip find cable!
 

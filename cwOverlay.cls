@@ -64,10 +64,12 @@ Private animateCCW As Boolean
 Private SDeg As Double
 Private ramPercent As Long
 Private ramTotal As Long
+Private sizString As String
 
 '------------------------------------------------------ ENDS
 
 Private mTicking As Boolean ' property Ticking
+Private mThisRAMDetail As String ' property
 Private mPointerAnimate As Boolean ' property PointerAnimate
 Private mLocked As Boolean ' property Locked
 Private mHidden As Boolean ' property Hidden
@@ -99,6 +101,8 @@ Private Sub Class_Initialize()
     
     Set tmrAnimator = Nothing
     Set tmrAnimator = New_c.Timer(animationInterval, False)
+    
+    mThisRAMDetail = obtainRAMDetails
 
    On Error GoTo 0
    Exit Sub
@@ -193,6 +197,45 @@ TickingLet_Error:
 
     MsgBox "Error " & Err.Number & " (" & Err.Description & ") in Property Ticking of Class Module cwOverlay"
 End Property ' the earth Ticking flag
+
+'---------------------------------------------------------------------------------------
+' Property : thisRAMDetail
+' Author    : beededea
+' Date      : 17/05/2023
+' Purpose   :
+'---------------------------------------------------------------------------------------
+'
+Public Property Get thisRAMDetail() As String
+   On Error GoTo thisRAMDetailGet_Error
+
+    thisRAMDetail = mThisRAMDetail
+
+   On Error GoTo 0
+   Exit Property
+
+thisRAMDetailGet_Error:
+
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in Property thisRAMDetail of Class Module cwOverlay"
+End Property
+'---------------------------------------------------------------------------------------
+' Property  : thisRAMDetail
+' Author    :
+' Date      : 09/05/2023
+' Purpose   :
+'---------------------------------------------------------------------------------------
+'
+Public Property Let thisRAMDetail(ByVal newValue As String)
+    On Error GoTo thisRAMDetailLet_Error
+
+    If mThisRAMDetail <> newValue Then mThisRAMDetail = newValue Else Exit Property
+        
+    On Error GoTo 0
+    Exit Property
+
+thisRAMDetailLet_Error:
+
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in Property thisRAMDetail of Class Module cwOverlay"
+End Property
 
 '---------------------------------------------------------------------------------------
 ' Property : thisOpacity
@@ -587,7 +630,7 @@ Private Sub tmrSampler_Timer()
             ' obtain the new RAM amount
             ramPercent = RAM_Usage_Percent
             
-            'ramTotal = RAM_Usage_Total
+            ramTotal = RAM_Usage_Total
 
             
             ' calculate the new cpu amount in degrees
@@ -698,6 +741,37 @@ RAM_Usage_Total_Error:
 
 End Function
 
+' ----------------------------------------------------------------
+' Procedure Name: obtainRAMDetails
+' Purpose:
+' Procedure Kind: Function
+' Procedure Access: Public
+' Return Type: String
+' Author: beededea
+' Date: 21/01/2024
+' ----------------------------------------------------------------
+Function obtainRAMDetails() As String
+    Dim result As String: result = vbNullString
+    
+    On Error GoTo obtainRAMDetails_Error
+
+    result = result & "System Memory: " & Trim$(RAM_Usage_Total) & sizString & " RAM." & vbCrLf
+'    result = result & " with " & noOfProcessors & " Processor Cores." & vbCrLf
+'    result = result & "Frequency (MHz): " & objRAM.MaxClockSpeed & vbCrLf
+'    result = result & "RAM-ID: " & objRAM.ProcessorId & vbCrLf
+
+    Debug.Print result
+
+    obtainRAMDetails = result
+    
+    On Error GoTo 0
+    Exit Function
+
+obtainRAMDetails_Error:
+
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure obtainRAMDetails, line " & Erl & "."
+
+End Function
 '
 ' ----------------------------------------------------------------
 ' Procedure Name: CLargeInt
@@ -759,12 +833,16 @@ Public Function NumberInKB(ByVal vNumber As Currency) As Long
     
        Case Is < 1024 ^ 2
           retVal = CLng(Round(vNumber / 1024, 1)) ' KB
-    
+          sizString = "KB"
        Case Is < 1024 ^ 3
           retVal = CLng(Round(vNumber / 1024 ^ 2, 2)) ' MB
-    
+          sizString = "MB"
        Case Is < 1024 ^ 4
           retVal = CLng(Round(vNumber / 1024 ^ 3, 2)) ' GB
+          sizString = "GB"
+       Case Is < 1024 ^ 5
+          retVal = CLng(Round(vNumber / 1024 ^ 4, 2)) ' TB
+          sizString = "TB"
     End Select
     
     NumberInKB = retVal

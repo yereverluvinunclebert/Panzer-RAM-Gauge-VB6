@@ -196,7 +196,7 @@ Public Property Let Ticking(ByVal newValue As Boolean)
 TickingLet_Error:
 
     MsgBox "Error " & Err.Number & " (" & Err.Description & ") in Property Ticking of Class Module cwOverlay"
-End Property ' the earth Ticking flag
+End Property
 
 '---------------------------------------------------------------------------------------
 ' Property : thisRAMDetail
@@ -208,6 +208,7 @@ End Property ' the earth Ticking flag
 Public Property Get thisRAMDetail() As String
    On Error GoTo thisRAMDetailGet_Error
 
+    mThisRAMDetail = obtainRAMDetails
     thisRAMDetail = mThisRAMDetail
 
    On Error GoTo 0
@@ -228,6 +229,8 @@ Public Property Let thisRAMDetail(ByVal newValue As String)
     On Error GoTo thisRAMDetailLet_Error
 
     If mThisRAMDetail <> newValue Then mThisRAMDetail = newValue Else Exit Property
+    
+
         
     On Error GoTo 0
     Exit Property
@@ -750,15 +753,12 @@ End Function
 ' Author: beededea
 ' Date: 21/01/2024
 ' ----------------------------------------------------------------
-Function obtainRAMDetails() As String
+Private Function obtainRAMDetails() As String
     Dim result As String: result = vbNullString
     
     On Error GoTo obtainRAMDetails_Error
 
-    result = result & "System Memory: " & Trim$(RAM_Usage_Total) & sizString & " RAM." & vbCrLf
-'    result = result & " with " & noOfProcessors & " Processor Cores." & vbCrLf
-'    result = result & "Frequency (MHz): " & objRAM.MaxClockSpeed & vbCrLf
-'    result = result & "RAM-ID: " & objRAM.ProcessorId & vbCrLf
+    result = result & "System Memory: " & Trim$(RAM_Usage_Total) & sizString & " RAM total, " & CStr(RAM_Usage_Percent) & "% utilised." & vbCrLf
 
     Debug.Print result
 

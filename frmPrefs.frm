@@ -3552,6 +3552,8 @@ Private Sub adjustPrefsControls()
     txtDblClickCommand.Text = PzGDblClickCommand
     txtOpenFile.Text = PzGOpenFile
     txtDefaultEditor.Text = PzGDefaultEditor
+    lblGitHub.Caption = "You can find the code for the Panzer RAM Gauge on github, visit by double-clicking this link https://github.com/yereverluvinunclebert/ Panzer-RAM-Gauge-VB6"
+    
     
      ' fonts tab
     If PzGPrefsFont <> vbNullString Then
@@ -5903,13 +5905,13 @@ Public Sub setPrefsFormZordering()
 
    On Error GoTo setPrefsFormZordering_Error
 
-    If Val(PzGWindowLevel) = 0 Then
-        Call SetWindowPos(Me.hwnd, HWND_BOTTOM, 0&, 0&, 0&, 0&, OnTopFlags)
-    ElseIf Val(PzGWindowLevel) = 1 Then
-        Call SetWindowPos(Me.hwnd, HWND_TOP, 0&, 0&, 0&, 0&, OnTopFlags)
-    ElseIf Val(PzGWindowLevel) = 2 Then
-        Call SetWindowPos(Me.hwnd, HWND_TOPMOST, 0&, 0&, 0&, 0&, OnTopFlags)
-    End If
+'    If Val(PzGWindowLevel) = 0 Then
+'        Call SetWindowPos(Me.hwnd, HWND_BOTTOM, 0&, 0&, 0&, 0&, OnTopFlags)
+'    ElseIf Val(PzGWindowLevel) = 1 Then
+'        Call SetWindowPos(Me.hwnd, HWND_TOP, 0&, 0&, 0&, 0&, OnTopFlags)
+'    ElseIf Val(PzGWindowLevel) = 2 Then
+'        Call SetWindowPos(Me.hwnd, HWND_TOPMOST, 0&, 0&, 0&, 0&, OnTopFlags)
+'    End If
 
    On Error GoTo 0
    Exit Sub

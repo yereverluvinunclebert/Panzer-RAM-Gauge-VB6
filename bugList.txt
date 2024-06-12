@@ -32,6 +32,14 @@ DONE
 
 TODO
 
+using: https://stackoverflow.com/questions/1404731/how-to-get-current-cpu-and-ram-usage-in-vb-6
+Create gauges based upon the RAM gauge for pagefile usage and virtual memory.
+   ulTotalPageFile As INT64
+   ulAvailPageFile As INT64
+   ulTotalVirtual As INT64
+   ulAvailVirtual As INT64
+   ulAvailExtendedVirtual As INT64
+
 ' improve data collection to reduce unnecessary CPU usage on each sampling interval
 
 ' add second monitor - wip find cable!

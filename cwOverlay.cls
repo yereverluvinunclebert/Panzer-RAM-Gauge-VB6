@@ -755,10 +755,21 @@ End Function
 ' ----------------------------------------------------------------
 Private Function obtainRAMDetails() As String
     Dim result As String: result = vbNullString
+    Dim udtMemStatEx As MEMORYSTATUSEX
     
     On Error GoTo obtainRAMDetails_Error
+    
+    udtMemStatEx.dwLength = Len(udtMemStatEx)
+    Call GlobalMemoryStatusEx(udtMemStatEx)
+    
+    result = result & "System Memory (RAM) Utilised : " & Trim$(RAM_Usage_Total) & sizString & vbCrLf
 
-    result = result & "System Memory: " & Trim$(RAM_Usage_Total) & sizString & " RAM total, " & CStr(RAM_Usage_Percent) & "% utilised." & vbCrLf
+    result = result & "Free RAM Available for use : " + vbTab + NumberInKB2(CLargeInt(udtMemStatEx.ulAvailPhys.LoPart, udtMemStatEx.ulAvailPhys.HiPart)) & vbCrLf
+    result = result & "RAM Percentage : " + vbTab + CStr(RAM_Usage_Percent) & "% utilised." & vbCrLf & vbCrLf
+    result = result & "Virtual Memory Usage : " + vbTab + CStr(100 - Round(CLargeInt(udtMemStatEx.ulAvailVirtual.LoPart, udtMemStatEx.ulAvailVirtual.HiPart) / (CLargeInt(udtMemStatEx.ulTotalVirtual.LoPart, udtMemStatEx.ulTotalVirtual.HiPart)) * 100)) & "% utilised." & vbCrLf
+    result = result & "Pagefile Memory Usage : " + vbTab + CStr(100 - Round(CLargeInt(udtMemStatEx.ulAvailPageFile.LoPart, udtMemStatEx.ulAvailPageFile.HiPart) / (CLargeInt(udtMemStatEx.ulTotalPageFile.LoPart, udtMemStatEx.ulTotalPageFile.HiPart)) * 100)) & "% utilised." & vbCrLf
+    
+
 
     Debug.Print result
 
@@ -846,6 +857,49 @@ Public Function NumberInKB(ByVal vNumber As Currency) As Long
     End Select
     
     NumberInKB = retVal
+
+    
+    On Error GoTo 0
+    Exit Function
+
+NumberInKB_Error:
+
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure NumberInKB, line " & Erl & "."
+
+End Function
+
+
+
+
+' ----------------------------------------------------------------
+' Procedure Name: NumberInKB
+' Purpose:
+' Procedure Kind: Function
+' Procedure Access: Public
+' Parameter vNumber (Currency):
+' Return Type: Long
+' Author: https://stackoverflow.com/users/164214/khodor
+' Date: 11/01/2024
+' ----------------------------------------------------------------
+Public Function NumberInKB2(ByVal vNumber As Currency) As String
+    On Error GoTo NumberInKB_Error
+    Dim retVal As String
+    
+    Select Case vNumber
+       Case Is < 1024 ^ 1
+          retVal = CLng(vNumber) & " bytes"
+       Case Is < 1024 ^ 2
+          retVal = CLng(Round(vNumber / 1024, 1)) & " KB"
+       Case Is < 1024 ^ 3
+          retVal = CLng(Round(vNumber / 1024 ^ 2, 2)) & " MB"
+       Case Is < 1024 ^ 4
+          retVal = CLng(Round(vNumber / 1024 ^ 3, 2)) & " GB"
+       Case Is < 1024 ^ 5
+          retVal = CLng(Round(vNumber / 1024 ^ 4, 2)) & " TB"
+    End Select
+    
+    If vNumber = 0 Then retVal = "zero"
+    NumberInKB2 = retVal
 
     
     On Error GoTo 0

@@ -13,6 +13,73 @@
  Functional and gorgeous at the same time. The graphics are my own, I took original inspiration from a clock face by Italo Fortana combining it with an aircraft gauge surround. It is all my code with some help from the chaps at VBForums (credits given). 
   
 The Panzer RAM Gauge VB6  is a useful utility displaying the RAM usage of your system in a dieselpunk fashion on your desktop. This Widget is a moveable widget that you can move anywhere around the desktop as you require.
+
+The following is the code used to extract the drive information from the running system via the GlobalMemoryStatusEx API. These are the pertinent bits:
+
+    Private Declare Sub GlobalMemoryStatusEx Lib "kernel32" (lpBuffer As MEMORYSTATUSEX)
+    
+    Private Type INT64
+       LoPart As Long
+       HiPart As Long
+    End Type
+    
+    Private Type MEMORYSTATUSEX
+       dwLength As Long
+       dwMemoryLoad As Long
+       ulTotalPhys As INT64
+       ulAvailPhys As INT64
+       ulTotalPageFile As INT64
+       ulAvailPageFile As INT64
+       ulTotalVirtual As INT64
+       ulAvailVirtual As INT64
+       ulAvailExtendedVirtual As INT64
+    End Type
+    
+    Private Function RAM_Usage_Percent() As Long
+        Dim udtMemStatEx As MEMORYSTATUSEX
+        Dim physMemFree As Long: physMemFree = 0
+        
+        udtMemStatEx.dwLength = Len(udtMemStatEx)
+        Call GlobalMemoryStatusEx(udtMemStatEx)
+        
+        physMemFree = Round(CLargeInt(udtMemStatEx.ulAvailPhys.LoPart, udtMemStatEx.ulAvailPhys.HiPart) / (CLargeInt(udtMemStatEx.ulTotalPhys.LoPart, udtMemStatEx.ulTotalPhys.HiPart)) * 100)
+        
+        RAM_Usage_Percent = 100 - physMemFree
+    
+    End Function
+    
+    Private Function RAM_Usage_Total() As Double
+        Dim udtMemStatEx As MEMORYSTATUSEX
+        Dim physMem As Long: physMem = 0
+        
+        udtMemStatEx.dwLength = Len(udtMemStatEx)
+        Call GlobalMemoryStatusEx(udtMemStatEx)
+        
+        physMem = NumberInKB(CLargeInt(udtMemStatEx.ulTotalPhys.LoPart, udtMemStatEx.ulTotalPhys.HiPart))
+        
+        RAM_Usage_Total = physMem
+    End Function
+    
+    Private Function obtainRAMDetails() As String
+        Dim result As String: result = vbNullString
+        Dim udtMemStatEx As MEMORYSTATUSEX
+    
+        udtMemStatEx.dwLength = Len(udtMemStatEx)
+        Call GlobalMemoryStatusEx(udtMemStatEx)
+        
+        result = result & "System Memory (RAM) Utilised : " & Trim$(RAM_Usage_Total) & sizString & vbCrLf
+    
+        result = result & "Free RAM Available for use : " + vbTab + NumberInKB2(CLargeInt(udtMemStatEx.ulAvailPhys.LoPart, udtMemStatEx.ulAvailPhys.HiPart)) & vbCrLf
+        result = result & "RAM Percentage : " + vbTab + CStr(RAM_Usage_Percent) & "% utilised." & vbCrLf & vbCrLf
+        result = result & "Virtual Memory Usage : " + vbTab + CStr(100 - Round(CLargeInt(udtMemStatEx.ulAvailVirtual.LoPart, udtMemStatEx.ulAvailVirtual.HiPart) / (CLargeInt(udtMemStatEx.ulTotalVirtual.LoPart, udtMemStatEx.ulTotalVirtual.HiPart)) * 100)) & "% utilised." & vbCrLf
+        result = result & "Pagefile Memory Usage : " + vbTab + CStr(100 - Round(CLargeInt(udtMemStatEx.ulAvailPageFile.LoPart, udtMemStatEx.ulAvailPageFile.HiPart) / (CLargeInt(udtMemStatEx.ulTotalPageFile.LoPart, udtMemStatEx.ulTotalPageFile.HiPart)) * 100)) & "% utilised." & vbCrLf
+    
+        Debug.Print result
+    
+        obtainRAMDetails = result
+    End Function
+
+There are some other bits of code used for formatting the results that you will need. Just dig into the code of this desktop gauge to find the above and it will become apparent which other bits you require. Hope the code is useful to anyone else building system metric utilities using VB6/VBS/VBA/TwinBasic.
  
 ![panzer-ramphoto-1440x900](https://github.com/yereverluvinunclebert/Panzer-RAM-Gauge-VB6/assets/2788342/325c427a-2149-4f92-aeb9-51b9f937cd4c)
 
